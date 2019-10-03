@@ -10,15 +10,16 @@ import java.sql.SQLException;
  */
 public class Conexion {
     private static Connection conexion = null;
-    private final String jdbcURL = "jdbc:mariadb://localhost:3306/SistemaPaquetes";
+    private final String jdbcURL = "jdbc:mariadb://localhost:3306/WebRevistas";
     private final String jdbcUsername = "userDB";
     private final String jdbcPassword = "123";
     
     private Conexion(){
         try {
+            Class.forName("org.mariadb.jdbc.Driver");
             conexion = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
             System.out.println("Conexion establecida");
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println("No se pudo conectar");
             System.out.println(e.getMessage());
         }

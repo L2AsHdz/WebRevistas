@@ -1,5 +1,7 @@
 package com.ashdz.webrevistas.model;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  *
  * @author asael
@@ -12,6 +14,15 @@ public class Usuario {
     private int tipoUsuario;
 
     public Usuario() {
+    }
+
+    public Usuario(HttpServletRequest request) {
+        emailUsuario = request.getParameter("email");
+        nombreUsuario = request.getParameter("nombre");
+        usuarioSistema = request.getParameter("userS");
+        password = request.getParameter("pass");
+        tipoUsuario = Integer.parseInt(request.getParameter("tipoUser"))+1;
+        
     }
 
     public String getEmailUsuario() {

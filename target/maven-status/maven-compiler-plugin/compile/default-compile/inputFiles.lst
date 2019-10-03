@@ -1,0 +1,7 @@
+/home/asael/NetBeansProjects/WebRevistas/src/main/java/com/ashdz/webrevistas/model/Revista.java
+/home/asael/NetBeansProjects/WebRevistas/src/main/java/com/ashdz/webrevistas/model/Usuario.java
+/home/asael/NetBeansProjects/WebRevistas/src/main/java/com/ashdz/webrevistas/DAO/Usuario/UsuarioDAO.java
+/home/asael/NetBeansProjects/WebRevistas/src/main/java/com/ashdz/webrevistas/DAO/CRUD.java
+/home/asael/NetBeansProjects/WebRevistas/src/main/java/com/ashdz/webrevistas/servlets/RegistroUsuarioController.java
+/home/asael/NetBeansProjects/WebRevistas/src/main/java/com/ashdz/webrevistas/DAO/Usuario/UsuarioDAOImpl.java
+/home/asael/NetBeansProjects/WebRevistas/src/main/java/com/ashdz/webrevistas/model/Conexion.java

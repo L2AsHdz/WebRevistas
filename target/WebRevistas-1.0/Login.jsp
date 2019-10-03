@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 2/10/2019, 02:32:40 PM
+    Document   : Login
+    Created on : 2/10/2019, 11:46:04 PM
     Author     : asael
 --%>
 
@@ -10,10 +10,11 @@
     <head>
         <%@include file="Bootstrap.html" %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>WebRevistas</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        <%@include file="BarraNavegacion.html" %>
+        <%@include file="BarraNavegacion.html" %><br><br><br>
+        <h1>Login</h1>
         <%@include file="Scripts.html" %>
     </body>
 </html>

@@ -1,0 +1,46 @@
+<form class="needs-validation" novalidate action="RegistroUsuarioController" method="POST">
+    <div class="form-group">
+        <div class="col-3">
+            <label for="nombre">Nombre</label>
+            <input class="form-control" id="nombre" name="nombre" placeholder="Nombre completo" required>
+            <div class="invalid-feedback">
+                Debes ingresar tu nombre.
+            </div>
+        </div><br>
+        <div class="col-3">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="example@gmail.com" required>
+            <div class="invalid-feedback">
+                El email es obligatorio.
+            </div>
+        </div><br>
+        <div class="col-3">
+            <label for="userS">Nombre de usuario</label>
+            <input class="form-control" id="userS" name="userS" placeholder="User123" required>
+            <div class="invalid-feedback">
+                Por favor elije un nombre de usuario.
+            </div>
+        </div><br>
+        <div class="col-3">
+            <label for="pass">Password</label>
+            <input type="password" class="form-control" id="pass" name="pass" required>
+            <div class="invalid-feedback">
+                Este campo es obligatorio.
+            </div>
+        </div><br>
+        <div class="col-3">
+            <label for="tipoUser">Tipo de usuario</label>
+            <select class="custom-select" id="tipoUser" name="tipoUser" required>
+                <option value="">Elegir...</option>
+                <option value="1">Editor</option>
+                <option value="2">Suscriptor</option>
+            </select>
+            <div class="invalid-feedback">
+                Por favor elije un tipo de usuario.
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <button type="submit" class="btn btn-primary">Registrarse</button>
+    </div>
+</form>
