@@ -8,12 +8,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@include file="Bootstrap.html" %>
+        <%@include file="bootstrap.html" %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>WebRevistas</title>
     </head>
     <body>
-        <%@include file="BarraNavegacion.html" %>
-        <%@include file="Scripts.html" %>
+        <%@include file="barraNavegacion.html" %>
+        <%@include file="scripts.html" %>
     </body>
 </html>

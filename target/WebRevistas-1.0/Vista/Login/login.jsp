@@ -8,13 +8,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@include file="Bootstrap.html" %>
+        <%@include file="Otros/Bootstrap.html" %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>WebRevistas - Login</title>
     </head>
     <body>
-        <%@include file="BarraNavegacion.html" %><br><br><br>
-        <h1>Login</h1>
-        <%@include file="Scripts.html" %>
+        <%@include file="Vista/BarraNavegacion.html" %><br><br><br>
+        <h3>Login</h3>
+        <%@include file="Otros/Scripts.html" %>
     </body>
 </html>

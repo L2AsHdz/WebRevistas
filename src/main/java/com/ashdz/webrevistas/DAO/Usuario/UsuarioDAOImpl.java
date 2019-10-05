@@ -77,27 +77,9 @@ public class UsuarioDAOImpl implements UsuarioDAO{
     }
 
     @Override
-    public Usuario getObject(Object Email) {
-        Usuario u = new Usuario();
-        try {
-            String sql = "SELECT * FROM Usuario WHERE EmailUsuario = ?";
-            PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setString(1, (String)Email);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                u.setEmailUsuario(rs.getString("EmailUsuario"));
-                u.setNombreUsuario(rs.getString("NombreUsuario"));
-                u.setUsuarioSistema(rs.getString("UsuarioSistema"));
-                u.setPassword(rs.getString("Password"));
-                u.setTipoUsuario(rs.getInt("TipoUsuario"));
-            }
-            System.out.println("Usuario obtenido de la BD");
-            ps.close();
-        } catch (SQLException ex) {
-            System.out.println("No se pudo leer el usuario");
-            ex.printStackTrace();
-        }
-        return u;
+    public Usuario getObject(Object e) {
+        throw new UnsupportedOperationException("Not supported yet.");
+
     }
 
     @Override
@@ -122,6 +104,62 @@ public class UsuarioDAOImpl implements UsuarioDAO{
     @Override
     public void delete(int t) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Usuario getByEmail(Object email) {
+        Usuario u = new Usuario();
+        try {
+            String sql = "SELECT * FROM Usuario WHERE EmailUsuario = ?";
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setString(1, (String)email);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                u.setEmailUsuario(rs.getString("EmailUsuario"));
+                u.setNombreUsuario(rs.getString("NombreUsuario"));
+                u.setUsuarioSistema(rs.getString("UsuarioSistema"));
+                u.setPassword(rs.getString("Password"));
+                u.setTipoUsuario(rs.getInt("TipoUsuario"));
+            }else{
+                u = null;
+            }
+            
+            System.out.println("Usuario obtenido de la BD");
+            ps.close();
+        } catch (SQLException ex) {
+            System.out.println("No se pudo leer el usuario");
+            ex.printStackTrace();
+        }
+        return u;
+    }
+
+    @Override
+    public Usuario getByUserName(Object userName) {
+        Usuario u = new Usuario();
+        try {
+            String sql = "SELECT * FROM Usuario WHERE UsuarioSistema = ?";
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setString(1, (String)userName);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                u.setEmailUsuario(rs.getString("EmailUsuario"));
+                u.setNombreUsuario(rs.getString("NombreUsuario"));
+                u.setUsuarioSistema(rs.getString("UsuarioSistema"));
+                u.setPassword(rs.getString("Password"));
+                u.setTipoUsuario(rs.getInt("TipoUsuario"));
+            }else{
+                u = null;
+            }
+            
+            System.out.println("Usuario obtenido de la BD");
+            ps.close();
+        } catch (SQLException ex) {
+            System.out.println("No se pudo leer el usuario");
+            ex.printStackTrace();
+        }
+        return u;
     }
     
 }

@@ -17,9 +17,9 @@ public class Usuario {
     }
 
     public Usuario(HttpServletRequest request) {
-        emailUsuario = request.getParameter("email");
+        emailUsuario = request.getParameter("email").toLowerCase();
         nombreUsuario = request.getParameter("nombre");
-        usuarioSistema = request.getParameter("userS");
+        usuarioSistema = request.getParameter("userS").toLowerCase();
         password = request.getParameter("pass");
         tipoUsuario = Integer.parseInt(request.getParameter("tipoUser"))+1;
         

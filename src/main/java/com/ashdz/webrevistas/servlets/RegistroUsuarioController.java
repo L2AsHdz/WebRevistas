@@ -5,7 +5,7 @@
  */
 package com.ashdz.webrevistas.servlets;
 
-import com.ashdz.webrevistas.DAO.CRUD;
+import com.ashdz.webrevistas.DAO.Usuario.UsuarioDAO;
 import com.ashdz.webrevistas.DAO.Usuario.UsuarioDAOImpl;
 import com.ashdz.webrevistas.model.Usuario;
 import java.io.IOException;
@@ -22,20 +22,41 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "RegistroUsuarioController", urlPatterns = {"/RegistroUsuarioController"})
 public class RegistroUsuarioController extends HttpServlet {
-    private Usuario user;
-    private CRUD<Usuario> userDAO;
+    private Usuario usuario;
+    private UsuarioDAO userDAO;
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        user = new Usuario(request);
+        usuario = new Usuario(request);
         userDAO = UsuarioDAOImpl.getUserDAO();
+        RequestDispatcher dispatcher;
         
-        try {
-            userDAO.create(user);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("resultado.jsp");
-            request.setAttribute("usuario", user);
-            dispatcher.forward(request, response);
-        } catch (Exception e) {
+        /*boolean flag = true;
+
+        if (usuario.getNombreUsuario().length()<2 || usuario.getEmailUsuario().length()<2
+            || usuario.getNombreUsuario().length()<2 || usuario.getPassword().length()<2
+            || usuario.getTipoUsuario() == 1) {
+            request.setAttribute("errorEmpty", usuario);
+            flag = false;
         }
+        if (userDAO.getByEmail(usuario.getEmailUsuario()) != null || userDAO.getByUserName(usuario.getNombreUsuario()) != null) {
+            request.setAttribute("errorExiste", usuario);   
+            flag = false;
+        }
+        if (flag) {
+            
+        }
+        
+        if (!flag) {
+            dispatcher = request.getRequestDispatcher("registro.jsp");
+            dispatcher.forward(request, response);
+        } else {*/
+            try {
+                userDAO.create(usuario);
+                dispatcher = request.getRequestDispatcher("resultado.jsp");
+                dispatcher.forward(request, response);
+            } catch (IOException | ServletException e) {
+            }
+       // }
     }
 }

@@ -8,17 +8,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@include file="Bootstrap.html" %>
+        <%@include file="Otros/Bootstrap.html" %>
         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>WebRevistas - Registro</title>
     </head>
     <body>
         <%--Barra de navegacion--%>
-        <%@include file="BarraNavegacion.html" %><br><br><br>
+        <%@include file="Vista/BarraNavegacion.html" %><br><br><br>
 
+        <h3>Registrarse</h3><br>
         <%--Formulario--%>
-        <%@include file="FormRegistro.html" %>
+        <%@include file="Vista/Registro/FormRegistro.html" %>
         
         <script>
             (function(){
@@ -37,6 +38,6 @@
                 }, false);
             })();
         </script>
-        <%@include file="Scripts.html" %>
+        <%@include file="Otros/Scripts.html" %>
     </body>
 </html>
