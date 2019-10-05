@@ -56,13 +56,14 @@ public class ValidarLogin extends HttpServlet {
     private void validarPass(HttpServletRequest request, HttpServletResponse response, Usuario user) {
         try {
             if (user.getPassword().equals(pass)) {
-                HttpSession newSesion = request.getSession();
-                newSesion.setAttribute("Usuario", user);
-                request.setAttribute("Usuario", user);
+                HttpSession sesion = request.getSession(true);
+                sesion.setAttribute("usuario", user);
+                //request.setAttribute("usuario", user);
                 switch (user.getTipoUsuario()) {
                     case 1:
                         RequestDispatcher dispatcher = request.getRequestDispatcher("inicioAdmin.jsp");
                         dispatcher.forward(request, response);
+                        //response.sendRedirect("inicioAdmin.jsp");
                         break;
                     case 2:
                         RequestDispatcher dispatcher2 = request.getRequestDispatcher("inicioEditor.jsp");

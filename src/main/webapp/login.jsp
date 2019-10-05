@@ -22,9 +22,9 @@
         <!--Formulario Login-->
         <form class="needs-validation" novalidate action="ValidarLogin" method="POST">
             <div class="form-group">
-                <div class="col-3">
+                <div class="col">
                     <label for="user">Usuario</label>
-                    <input class="form-control" id="user" name="user" placeholder="Email o usuario" required>
+                    <input class="form-control" id="user" name="user" placeholder="Email o usuario" value="${succes.usuarioSistema}" required>
                     <c:if test="${requestScope['errorUser'] != null}">
                         <script>document.getElementById("user").value = "${errorUser}";</script>
                         <script>document.getElementById("user").className += " is-invalid";</script>
@@ -33,9 +33,9 @@
                         </div>
                     </c:if>
                 </div><br>
-                <div class="col-3">
+                <div class="col">
                     <label for="pass">Password</label>
-                    <input type="password" class="form-control" id="pass" name="pass" required>
+                    <input type="password" class="form-control" id="pass" name="pass" placeholder="Ingrese password" value="${succes.password}" required>
                     <c:if test="${requestScope['errorPass'] != null}">
                         <script>document.getElementById("user").value = "${errorPass}";</script>
                         <script>document.getElementById("pass").className += " is-invalid";</script>

@@ -22,41 +22,50 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "RegistroUsuarioController", urlPatterns = {"/RegistroUsuarioController"})
 public class RegistroUsuarioController extends HttpServlet {
-    private Usuario usuario;
+    private Usuario u;
     private UsuarioDAO userDAO;
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        usuario = new Usuario(request);
+        u = new Usuario(request);
+        String pass2 = request.getParameter("pass2");
         userDAO = UsuarioDAOImpl.getUserDAO();
         RequestDispatcher dispatcher;
         
-        /*boolean flag = true;
+        System.out.println(u.toString());
+        System.out.println(u.getEmailUsuario().isEmpty());
+        boolean flag = true;
 
-        if (usuario.getNombreUsuario().length()<2 || usuario.getEmailUsuario().length()<2
-            || usuario.getNombreUsuario().length()<2 || usuario.getPassword().length()<2
-            || usuario.getTipoUsuario() == 1) {
-            request.setAttribute("errorEmpty", usuario);
+        if (u.getNombreUsuario().isEmpty() || u.getEmailUsuario().isEmpty() || u.getNombreUsuario().isEmpty() ||
+            u.getPassword().isEmpty() || u.getTipoUsuario() == 1) {
+            request.setAttribute("errorEmpty", u);
             flag = false;
         }
-        if (userDAO.getByEmail(usuario.getEmailUsuario()) != null || userDAO.getByUserName(usuario.getNombreUsuario()) != null) {
-            request.setAttribute("errorExiste", usuario);   
+        if (userDAO.getByEmail(u.getEmailUsuario()) != null || userDAO.getByUserName(u.getUsuarioSistema()) != null) {
+            request.setAttribute("errorExiste", u);   
             flag = false;
         }
-        if (flag) {
-            
+        if (!u.getPassword().equals(pass2)) {
+            request.setAttribute("errorPass", u);
+            flag = false;
+            System.out.println("Passwords distintas");
         }
         
         if (!flag) {
             dispatcher = request.getRequestDispatcher("registro.jsp");
             dispatcher.forward(request, response);
-        } else {*/
+            System.out.println("se han enviado los errores");
+        } else {
+            System.out.println("Que esta pasando doctor garcia");
             try {
-                userDAO.create(usuario);
-                dispatcher = request.getRequestDispatcher("resultado.jsp");
+                userDAO.create(u);
+                request.setAttribute("succes", u);
+                dispatcher = request.getRequestDispatcher("login.jsp");
                 dispatcher.forward(request, response);
             } catch (IOException | ServletException e) {
+                System.out.println("error en forward");
+                System.out.println(e.getMessage());
             }
-       // }
+        }
     }
 }
