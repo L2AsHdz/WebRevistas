@@ -6,12 +6,12 @@ import java.time.LocalDate;
  *
  * @author asael
  */
-public class LikeRevista {
+public class Like {
     private int idRevista;
     private String emailSuscriptor;
     private LocalDate fechaLike;
 
-    public LikeRevista() {
+    public Like() {
     }
 
     public int getIdRevista() {

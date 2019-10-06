@@ -6,14 +6,14 @@ import java.time.LocalDate;
  *
  * @author asael
  */
-public class ComentarioRevista {
+public class Comentario {
     private int idComentario;
     private int idRevista;
     private String emailSuscriptor;
     private LocalDate fechaComentario;
     private String comentario;
 
-    public ComentarioRevista() {
+    public Comentario() {
     }
 
     public int getIdComentario() {

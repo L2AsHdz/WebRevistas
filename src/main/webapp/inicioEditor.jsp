@@ -8,10 +8,17 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <%@include file="bootstrap.html" %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>WebRevistas</title>
+        <title>WebRevistas - ${sessionScope.usuario.usuarioSistema}</title>
     </head>
     <body>
-        <h1>Editor</h1>
+        
+        <!--Barra de navegacion-->
+        <%@include file="navBarEditor.html"%><br><br><br>
+        
+        Bienvenid@ ${sessionScope.usuario.usuarioSistema}
+        
+        <%@include file="scripts.html" %>
     </body>
 </html>

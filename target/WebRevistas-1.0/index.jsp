@@ -11,17 +11,24 @@
     <head>
 
         <%
-            if (session.getAttribute("usuario") != null) {
+            RequestDispatcher dispatcher;
+            if (request.getSession().getAttribute("usuario") != null) {
                 Usuario u = (Usuario) session.getAttribute("usuario");
                 switch (u.getTipoUsuario()) {
                     case 1:
-                        response.sendRedirect("inicioAdmin.jsp");
+                        dispatcher = request.getRequestDispatcher("inicioAdmin.jsp");
+                        dispatcher.forward(request, response);
+                        //response.sendRedirect("inicioAdmin.jsp");
                         break;
                     case 2:
-                        response.sendRedirect("inicioEditor.jsp");
+                        dispatcher = request.getRequestDispatcher("inicioEditor.jsp");
+                        dispatcher.forward(request, response);
+                        //response.sendRedirect("inicioEditor.jsp");
                         break;
                     case 3:
-                        response.sendRedirect("inicioSuscriptor.jsp");
+                        dispatcher = request.getRequestDispatcher("inicioSuscriptor.jsp");
+                        dispatcher.forward(request, response);
+                        //response.sendRedirect("inicioSuscriptor.jsp");
                         break;
                 }
 

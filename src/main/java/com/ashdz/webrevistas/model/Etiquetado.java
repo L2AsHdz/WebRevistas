@@ -4,11 +4,11 @@ package com.ashdz.webrevistas.model;
  *
  * @author asael
  */
-public class EtiquetaRevista {
+public class Etiquetado {
     private int idEtiqueta;
     private int idRevista;
 
-    public EtiquetaRevista() {
+    public Etiquetado() {
     }
 
     public int getIdEtiqueta() {

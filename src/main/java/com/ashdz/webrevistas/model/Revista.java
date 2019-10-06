@@ -6,7 +6,7 @@ package com.ashdz.webrevistas.model;
  */
 public class Revista {
     private int idRevista;
-    private int idEditor;
+    private String emailEditor;
     private int idCategoria;
     private String nombreRevista;
     private float cuotaSuscripcion;
@@ -28,12 +28,12 @@ public class Revista {
         this.idRevista = idRevista;
     }
 
-    public int getIdEditor() {
-        return idEditor;
+    public String getEmailEditor() {
+        return emailEditor;
     }
 
-    public void setIdEditor(int idEditor) {
-        this.idEditor = idEditor;
+    public void setEmailEditor(String emailEditor) {
+        this.emailEditor = emailEditor;
     }
 
     public int getIdCategoria() {

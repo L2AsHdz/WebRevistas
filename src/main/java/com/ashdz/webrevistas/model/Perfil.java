@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author asael
  */
 public class Perfil {
-    private int id;
+    private String emailUsuario;
     private InputStream foto;
     private InputStream fotoPredefinida;
     private String hobbies;
@@ -30,12 +30,12 @@ public class Perfil {
         sexo = request.getParameter("sexo");
     }
 
-    public int getId() {
-        return id;
+    public String getEmailUsuario() {
+        return emailUsuario;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setEmailUsuario(String emailUsuario) {
+        this.emailUsuario = emailUsuario;
     }
 
     public InputStream getFoto() {

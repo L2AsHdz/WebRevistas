@@ -6,7 +6,7 @@ import java.time.LocalDate;
  *
  * @author asael
  */
-public class PagoSuscripcion {
+public class Pago {
     private int id;
     private int idRevista;
     private String emailSuscriptor;
@@ -15,7 +15,7 @@ public class PagoSuscripcion {
     private float porcentajeA;
     private float costoR;
 
-    public PagoSuscripcion() {
+    public Pago() {
     }
 
     public int getId() {

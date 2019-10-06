@@ -4,7 +4,10 @@
     Author     : asael
 --%>
 
+<%@page import="com.ashdz.webrevistas.DAO.Precios.PrecioDAO"%>
+<%@page import="com.ashdz.webrevistas.DAO.Precios.PrecioDAOImpl"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,20 +19,30 @@
         <!--Barra de navegacion-->
         <%@include file="navBarAdmin.html"%><br><br><br>
 
+        <%
+            PrecioDAO precioDAO = PrecioDAOImpl.getPrecioDAO();
+        %>
 
         <!--Formulario CostoGlobal-->
         <h5>Costo global de una revista</h5>
-        <form class="needs-validation" novalidate action="CostoRevista" method="POST">
+        <form class="needs-validation" novalidate action="CostoRevistaController" method="POST">
             <div class="form-group">
                 <div class="col">
-                    <label for="costoG">Costo por dia</label>
-                    <input type="number" class="form-control" id="costoG" name="costoG" placeholder="Costo global por dia" value="" required>
-                    <c:if test="${requestScope['errorUser'] != null}">
-                        <script>document.getElementById("user").value = "${errorUser}";</script>
-                        <script>document.getElementById("user").className += " is-invalid";</script>
-                        <div class="invalid-feedback">
-                            Usuario no existe.
-                        </div>
+                    <label for="costoG">Porcentaje costo por dia</label>
+                    <input type ="number" class="form-control" id="costoG" name="costoG" placeholder="Costo global por dia" value="<%=precioDAO.getPrecio(1)%>" required>
+                    <div class="invalid-feedback" id="errorCosto" ></div>
+                    <c:if test="${requestScope['errorNumber'] != null}">
+                        <script>
+                            document.getElementById("errorCosto").innerHTML = "El valor debe ser decimal.";
+                            document.getElementById("costoG").className += " is-invalid";
+                        </script>
+                    </c:if>
+                    
+                    <c:if test="${requestScope['errorMax'] != null}">
+                        <script>
+                            document.getElementById("errorCosto").innerHTML = "El valor tiene que ser menor a 0.40";
+                            document.getElementById("costoG").className += " is-invalid";
+                        </script>
                     </c:if>
                 </div><br>
                 <div class="col">
@@ -44,7 +57,7 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-        <form class="needs-validation" novalidate action="CostoRevista" method="POST">
+        <form class="needs-validation" novalidate action="PorcentajeAdmin" method="POST">
             <div class="form-group">
                 <div class="col">
                     <label for="costoG">Costo por dia</label>
