@@ -129,17 +129,62 @@ public class RevistaDAOImpl implements RevistaDAO{
     }
 
     @Override
-    public ResultSet getResultSetRev() {
+    public ResultSet getResultSetRev(String email) {
         ResultSet rs = null;
         
         try {
-            String sql = "SELECT r.Nombrerevista Nombre, u.NombreUsuario Editor, "
+            String sql = "SELECT r.IdRevista Id,r.Nombrerevista Nombre, u.NombreUsuario Editor, "
                     + "c.NombreCategoria Categoria, r.CuotaSuscripcion Precio FROM "
                     + "Revista r INNER JOIN Usuario u ON r.EmailEditor=u.EmailUsuario "
-                    + "INNER JOIN Categoria c ON r.IdCategoria=c.IdCategoria";
+                    + "INNER JOIN Categoria c ON r.IdCategoria=c.IdCategoria WHERE EmailEditor=?";
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+            
+            System.out.println("resutset de revista obtenido");
+            ps.close();
+        } catch (SQLException e) {
+            rs=null;
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+    @Override
+    public ResultSet getResultSetRevAll(String email) {
+        ResultSet rs = null;
+        
+        try {
+            String sql = "SELECT IdRevista, NombreRevista FROM Revista WHERE EmailEditor = ?";
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+            
+            System.out.println("resutset de revista obtenido");
+            ps.close();
+        } catch (SQLException e) {
+            rs=null;
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+    @Override
+    public ResultSet getResultSetSearch(String s, String email) {
+        ResultSet rs = null;
+        
+        try {
+            String sql = "SELECT r.IdRevista,r.Nombrerevista Nombre, u.NombreUsuario Editor, "
+                    + "c.NombreCategoria Categoria, r.CuotaSuscripcion Precio FROM "
+                    + "Revista r INNER JOIN Usuario u ON r.EmailEditor=u.EmailUsuario "
+                    + "INNER JOIN Categoria c ON r.IdCategoria=c.IdCategoria WHERE "
+                    + "r.EmailEditor='"+email+"' AND r.NombreRevista LIKE '%"+s+"%'";
             Statement declaracion = conexion.createStatement();
             
             rs = declaracion.executeQuery(sql);
+            
             System.out.println("resutset de revista obtenido");
             declaracion.close();
         } catch (SQLException e) {
@@ -151,14 +196,43 @@ public class RevistaDAOImpl implements RevistaDAO{
     }
 
     @Override
-    public ResultSet getResultSetRevAll() {
+    public ResultSet getResultSetRevByCat(String cat) {
         ResultSet rs = null;
         
         try {
-            String sql = "SELECT * FROM Revista";
+            String sql = "SELECT r.IdRevista,r.Nombrerevista Nombre, u.NombreUsuario Editor, "
+                    + "c.NombreCategoria Categoria, r.CuotaSuscripcion Precio FROM "
+                    + "Revista r INNER JOIN Usuario u ON r.EmailEditor=u.EmailUsuario "
+                    + "INNER JOIN Categoria c ON r.IdCategoria=c.IdCategoria WHERE "
+                    + "c.NombreCategoria LIKE '%"+cat+"%'";
             Statement declaracion = conexion.createStatement();
             
             rs = declaracion.executeQuery(sql);
+            
+            System.out.println("resutset de revista obtenido");
+            declaracion.close();
+        } catch (SQLException e) {
+            rs=null;
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+    @Override
+    public ResultSet getResultSetSearchAll(String s) {
+        ResultSet rs = null;
+        
+        try {
+            String sql = "SELECT r.IdRevista,r.Nombrerevista Nombre, u.NombreUsuario Editor, "
+                    + "c.NombreCategoria Categoria, r.CuotaSuscripcion Precio FROM "
+                    + "Revista r INNER JOIN Usuario u ON r.EmailEditor=u.EmailUsuario "
+                    + "INNER JOIN Categoria c ON r.IdCategoria=c.IdCategoria WHERE "
+                    + "r.NombreRevista LIKE '%"+s+"%'";
+            Statement declaracion = conexion.createStatement();
+            
+            rs = declaracion.executeQuery(sql);
+            
             System.out.println("resutset de revista obtenido");
             declaracion.close();
         } catch (SQLException e) {

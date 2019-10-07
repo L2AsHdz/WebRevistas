@@ -4,6 +4,7 @@
     Author     : asael
 --%>
 
+<%@page import="com.ashdz.webrevistas.model.Usuario"%>
 <%@page import="com.ashdz.webrevistas.DAO.Publicacion.PublicacionDAO"%>
 <%@page import="com.ashdz.webrevistas.DAO.Publicacion.PublicacionDAOImpl"%>
 <%@page import="java.sql.ResultSet"%>
@@ -24,22 +25,23 @@
         <h5>Publicar Edicion</h5>
 
         <%
+            Usuario user = (Usuario) request.getSession().getAttribute("usuario");
             RevistaDAO revDAO = RevistaDAOImpl.getRevistaDAO();
-            ResultSet rs = revDAO.getResultSetRevAll();
+            ResultSet rs = revDAO.getResultSetRevAll(user.getEmailUsuario());
         %>
 
         <!--Formuario Publicacion Edicion-->
         <form class="needs-validation" novalidate action="PublicacionController" method="POST" enctype = "multipart/form-data" accept="application/pdf">
             <div class="form-group">
 
-                <!--Select Categoria-->
+                <!--Select Revista-->
                 <div class="col-sm-7">
                     <label for="revista">Revista</label>
                     <select class="custom-select" id="revista" name="revista" required>
                         <option value="0">Elegir...</option>
                         <%
                             while (rs.next()) {
-                        %><option value=<%=rs.getString("IdRevista")%>><%=rs.getString("IdRevista")%>  -  <%=rs.getString("NombreRevista")%></option><%
+                                %><option value=<%=rs.getString(1)%>><%=rs.getString(1)%>  -  <%=rs.getString(2)%></option><%
                             }
                         %>
                     </select>
@@ -52,8 +54,24 @@
                     </c:if>
                 </div><br>
 
+
+                <!--Input Fecha-->
+                <div class="col-sm-7">
+                    <label for="edicion">Numero Edicion</label>
+                    <input class="form-control" id="edicion" name="edicion" readonly>
+                    <div class="invalid-feedback" id="errorEdicion" ></div>
+                </div><br>
+                
                 <%
-                    PublicacionDAO publiDAO = PublicacionDAOImpl.getRevistaDAO();
+                    PublicacionDAO publiDAO = PublicacionDAOImpl.getPublicacionDAO();
+                    if (request.getParameter("revista") != null) {
+                        int id = Integer.parseInt(request.getParameter("revista"));
+                        request.setAttribute("newEdicion", publiDAO.getNoEdicionSig(id));
+                        System.out.println("${request.newEdicion}");
+                        %><script>
+                            document.getElementById("edicion").value = "${request.newEdicion}";
+                        </script><%
+                    }
                 %>
 
                 <!--Input Fecha-->
@@ -69,7 +87,7 @@
                     </c:if>
                     <br><label for="revista">Revista</label>
                 </div>
-                
+
                 <!--Eleccion de archivo-->&nbsp;&nbsp;&nbsp;
                 <div class="custom-file col-sm-7">
                     <input type="file" class="custom-file-input" id="archivo" name="archivo" accept=".pdf">

@@ -4,6 +4,9 @@
     Author     : asael
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAOImpl"%>
+<%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAO"%>
 <%@page import="com.ashdz.webrevistas.DAO.Precios.PrecioDAO"%>
 <%@page import="com.ashdz.webrevistas.DAO.Precios.PrecioDAOImpl"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -37,7 +40,7 @@
                             document.getElementById("costoG").className += " is-invalid";
                         </script>
                     </c:if>
-                    
+
                     <c:if test="${requestScope['errorMax'] != null}">
                         <script>
                             document.getElementById("errorCosto").innerHTML = "El valor tiene que ser menor a 0.40";
@@ -50,18 +53,16 @@
                 </div>
             </div>
         </form>
-
-        <!--Formulario CostoRevista-->
-        <h5>Costo revista</h5>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        
+        <!--BuscarPorNombre & Tabla Revistas-->
+        <h5>Costo por revista</h5>
+        <%@include file="buscarRevistaN.jsp" %>
+                
         <form class="needs-validation" novalidate action="PorcentajeAdmin" method="POST">
             <div class="form-group">
                 <div class="col">
                     <label for="costoG">Costo por dia</label>
-                    <input type="number" class="form-control" id="costoG" name="costoG" placeholder="Costo global por dia" value="" required>
+                    <input type="number" class="form-control" id="costoG" name="costoG" placeholder="Costo global por dia" value="" disabled required>
                     <c:if test="${requestScope['errorUser'] != null}">
                         <script>document.getElementById("user").value = "${errorUser}";</script>
                         <script>document.getElementById("user").className += " is-invalid";</script>
@@ -71,7 +72,7 @@
                     </c:if>
                 </div><br>
                 <div class="col">
-                    <button type="submit" class="btn btn-primary">Establecer</button>
+                    <button type="submit" class="btn btn-primary" disabled>Establecer</button>
                 </div>
             </div>
         </form>

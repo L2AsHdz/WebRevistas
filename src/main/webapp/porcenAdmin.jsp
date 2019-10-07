@@ -4,6 +4,9 @@
     Author     : asael
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAOImpl"%>
+<%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAO"%>
 <%@page import="com.ashdz.webrevistas.DAO.Precios.PrecioDAOImpl"%>
 <%@page import="com.ashdz.webrevistas.DAO.Precios.PrecioDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,13 +22,13 @@
 
         <!--Barra de navegacion-->
         <%@include file="navBarAdmin.html"%><br><br><br>
-        
+
         <%
             PrecioDAO precioDAO = PrecioDAOImpl.getPrecioDAO();
         %>
 
         <!--Formulario CostoGlobal-->
-        <h5>Costo global de una revista</h5>
+        <h5>Porcentaje global</h5>
         <form class="needs-validation" novalidate action="PorcentajeController" method="POST">
             <div class="form-group">
                 <div class="col">
@@ -38,7 +41,7 @@
                             document.getElementById("porcentajeA").className += " is-invalid";
                         </script>
                     </c:if>
-                    
+
                     <c:if test="${requestScope['errorMax'] != null}">
                         <script>
                             document.getElementById("errorPercent").innerHTML = "El valor tiene que ser menor a 0.60";
@@ -52,6 +55,28 @@
             </div>
         </form>
 
+        <!--BuscarPorNombre-->
+        <h5>Porcentaje por revista</h5>
+        <%@include file="buscarRevistaN.jsp" %>
+
+        <form class="needs-validation" novalidate action="PorcentajeAdmin" method="POST">
+            <div class="form-group">
+                <div class="col">
+                    <label for="costoG">Costo por dia</label>
+                    <input type="number" class="form-control" id="costoG" name="costoG" placeholder="Costo global por dia" value="" disabled required>
+                    <c:if test="${requestScope['errorUser'] != null}">
+                        <script>document.getElementById("user").value = "${errorUser}";</script>
+                        <script>document.getElementById("user").className += " is-invalid";</script>
+                        <div class="invalid-feedback">
+                            Usuario no existe.
+                        </div>
+                    </c:if>
+                </div><br>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary" disabled>Establecer</button>
+                </div>
+            </div>
+        </form>
         <%@include file="scripts.html" %>
     </body>
 </html>

@@ -32,7 +32,7 @@ public class PublicacionController extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        publiDAO = PublicacionDAOImpl.getRevistaDAO();
+        publiDAO = PublicacionDAOImpl.getPublicacionDAO();
         Part part = request.getPart("archivo");
         int idR = Integer.parseInt(request.getParameter("revista"));
         String date = request.getParameter("fecha");

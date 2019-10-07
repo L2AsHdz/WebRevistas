@@ -4,6 +4,7 @@
     Author     : asael
 --%>
 
+<%@page import="com.ashdz.webrevistas.model.Usuario"%>
 <%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAO"%>
 <%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAOImpl"%>
 <%@page import="java.sql.ResultSet"%>
@@ -93,8 +94,9 @@
                     
         
         <%
+            Usuario user = (Usuario)request.getSession().getAttribute("usuario");
             RevistaDAO revDAO = RevistaDAOImpl.getRevistaDAO();
-            ResultSet rs2 = revDAO.getResultSetRev();
+            ResultSet rs2 = revDAO.getResultSetRev(user.getEmailUsuario());
         %>
         
         <h5>Listado Revistas</h5>
@@ -114,11 +116,11 @@
                     int i = 1;
                     while (rs2.next()) {
                 %><tr>
-                    <th scope="row"><%=(i++)%></th>
-                    <td><%=rs2.getString(1)%></td>
+                    <th scope="row"><%=rs2.getString(1)%></th>
                     <td><%=rs2.getString(2)%></td>
                     <td><%=rs2.getString(3)%></td>
                     <td><%=rs2.getString(4)%></td>
+                    <td><%=rs2.getString(5)%></td>
                 </tr><%
                     }
                 %>

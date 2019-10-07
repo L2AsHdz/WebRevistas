@@ -19,7 +19,7 @@ public class PublicacionDAOImpl implements PublicacionDAO{
 
     private PublicacionDAOImpl(){}
     
-    public static PublicacionDAOImpl getRevistaDAO(){
+    public static PublicacionDAOImpl getPublicacionDAO(){
         if (edicionDAO == null) {
             edicionDAO = new PublicacionDAOImpl();
         }
