@@ -58,8 +58,8 @@ public class ValidarLogin extends HttpServlet {
             if (user.getPassword().equals(pass)) {
                 HttpSession sesion = request.getSession(true);
                 sesion.setAttribute("usuario", user);
-                sesion.setMaxInactiveInterval(1800);
-                //request.setAttribute("usuario", user);
+                sesion.setMaxInactiveInterval(3600);
+                request.setAttribute("usuario", user);
                 switch (user.getTipoUsuario()) {
                     case 1:
                         RequestDispatcher dispatcher = request.getRequestDispatcher("inicioAdmin.jsp");

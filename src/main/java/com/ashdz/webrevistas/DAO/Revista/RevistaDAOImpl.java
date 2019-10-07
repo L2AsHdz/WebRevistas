@@ -127,5 +127,46 @@ public class RevistaDAOImpl implements RevistaDAO{
     public void delete(int t) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    @Override
+    public ResultSet getResultSetRev() {
+        ResultSet rs = null;
+        
+        try {
+            String sql = "SELECT r.Nombrerevista Nombre, u.NombreUsuario Editor, "
+                    + "c.NombreCategoria Categoria, r.CuotaSuscripcion Precio FROM "
+                    + "Revista r INNER JOIN Usuario u ON r.EmailEditor=u.EmailUsuario "
+                    + "INNER JOIN Categoria c ON r.IdCategoria=c.IdCategoria";
+            Statement declaracion = conexion.createStatement();
+            
+            rs = declaracion.executeQuery(sql);
+            System.out.println("resutset de revista obtenido");
+            declaracion.close();
+        } catch (SQLException e) {
+            rs=null;
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+    @Override
+    public ResultSet getResultSetRevAll() {
+        ResultSet rs = null;
+        
+        try {
+            String sql = "SELECT * FROM Revista";
+            Statement declaracion = conexion.createStatement();
+            
+            rs = declaracion.executeQuery(sql);
+            System.out.println("resutset de revista obtenido");
+            declaracion.close();
+        } catch (SQLException e) {
+            rs=null;
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return rs;
+    }
     
 }

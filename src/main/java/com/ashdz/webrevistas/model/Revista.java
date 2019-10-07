@@ -1,5 +1,9 @@
 package com.ashdz.webrevistas.model;
 
+import com.ashdz.webrevistas.DAO.Precios.PrecioDAO;
+import com.ashdz.webrevistas.DAO.Precios.PrecioDAOImpl;
+import javax.servlet.http.HttpServletRequest;
+
 /**
  *
  * @author asael
@@ -16,8 +20,21 @@ public class Revista {
     private int estadoSuscripciones;
     private String descripcion;
     private float porcentajeAdmin;
+    private Usuario user;
+    private PrecioDAO precioDAO;
 
     public Revista() {
+    }
+    
+    public Revista(HttpServletRequest request) {
+        precioDAO = PrecioDAOImpl.getPrecioDAO();
+        user = (Usuario)request.getSession().getAttribute("usuario");
+        emailEditor = user.getEmailUsuario();
+        idCategoria = Integer.parseInt(request.getParameter("idCategoria"));
+        nombreRevista = request.getParameter("nombre");
+        costoPorDia = precioDAO.getPrecio(1);
+        descripcion = request.getParameter("descrip");
+        porcentajeAdmin = precioDAO.getPrecio(2);
     }
 
     public int getIdRevista() {

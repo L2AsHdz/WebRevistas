@@ -13,7 +13,6 @@ public class Publicacion {
     private LocalDate fechaPublicacion;
     private int noEdicion;
     private InputStream pdf;
-    private byte[] archivoPDF;
 
     public Publicacion() {
     }
@@ -56,13 +55,5 @@ public class Publicacion {
 
     public void setPdf(InputStream pdf) {
         this.pdf = pdf;
-    }
-
-    public byte[] getArchivoPDF() {
-        return archivoPDF;
-    }
-
-    public void setArchivoPDF(byte[] archivoPDF) {
-        this.archivoPDF = archivoPDF;
     }
 }

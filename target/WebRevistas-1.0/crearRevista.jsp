@@ -4,6 +4,8 @@
     Author     : asael
 --%>
 
+<%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAO"%>
+<%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAOImpl"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.ashdz.webrevistas.DAO.Categoria.CategoriaDAOImpl"%>
 <%@page import="com.ashdz.webrevistas.DAO.Categoria.CategoriaDAO"%>
@@ -20,6 +22,7 @@
 
         <!--Barra de navegacion-->
         <%@include file="navBarEditor.html"%><br><br><br>
+        <h5>Crear Revista</h5>
         
         <%
             CategoriaDAO categoDAO = CategoriaDAOImpl.getCategoriaDAO();
@@ -45,8 +48,8 @@
                 
                 <!--Select Categoria-->
                 <div class="col-sm-7">
-                    <label for="tipoUser">Categoria</label>
-                    <select class="custom-select" id="tipoUser" name="tipoUser" required>
+                    <label for="idCategoria">Categoria</label>
+                    <select class="custom-select" id="idCategoria" name="idCategoria" required>
                         <option value="0">Elegir...</option>
                         <%
                             while (rs.next()) {
@@ -54,11 +57,11 @@
                             }
                         %>
                     </select>
-                    <div class="invalid-feedback" id="errorTipo" ></div>
+                    <div class="invalid-feedback" id="errorCat" ></div>
                     <c:if test="${requestScope['errorEmpty'] != null}">
                         <script>
-                            document.getElementById("errorTipo").innerHTML = "Debe escoger un tipo de usuario.";
-                            document.getElementById("tipoUser").className += " is-invalid";
+                            document.getElementById("errorCat").innerHTML = "Debe escoger una categoria.";
+                            document.getElementById("idCategoria").className += " is-invalid";
                         </script>
                     </c:if>
                 </div><br>
@@ -70,15 +73,8 @@
                     <div class="invalid-feedback" id="errorCuota" ></div>
                     <c:if test="${requestScope['errorEmpty'] != null}">
                         <script>
-                            document.getElementById("errorCuota").innerHTML = "El campo es obligatorio.";
-                            document.getElementById("nombre").className += " is-invalid";
-                        </script>
-                    </c:if>
-
-                    <c:if test="${requestScope['errorNumber'] != null}">
-                        <script>
-                            document.getElementById("errorCuota").innerHTML = "No es un numero";
-                            document.getElementById("nombre").className += " is-invalid";
+                            document.getElementById("errorCuota").innerHTML = "Ingrese 0 si desea que sea gratis la suscripcion.";
+                            document.getElementById("cuota").className += " is-invalid";
                         </script>
                     </c:if>
                 </div><br>
@@ -93,7 +89,43 @@
             <div class="col">
                 <button type="submit" class="btn btn-primary">Registrarse</button>
             </div>
-        </form>
+        </form><br><br>
+                    
+        
+        <%
+            RevistaDAO revDAO = RevistaDAOImpl.getRevistaDAO();
+            ResultSet rs2 = revDAO.getResultSetRev();
+        %>
+        
+        <h5>Listado Revistas</h5>
+        <!--Tabla de revistas-->
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Editor</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">PrecioSuscripcion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    int i = 1;
+                    while (rs2.next()) {
+                %><tr>
+                    <th scope="row"><%=(i++)%></th>
+                    <td><%=rs2.getString(1)%></td>
+                    <td><%=rs2.getString(2)%></td>
+                    <td><%=rs2.getString(3)%></td>
+                    <td><%=rs2.getString(4)%></td>
+                </tr><%
+                    }
+                %>
+
+            </tbody>
+        </table>
+        
 
         <%@include file="scripts.html" %>
     </body>
