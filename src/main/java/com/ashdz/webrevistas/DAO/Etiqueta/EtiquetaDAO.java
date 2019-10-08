@@ -11,4 +11,5 @@ import java.sql.ResultSet;
 public interface EtiquetaDAO extends CRUD<Etiqueta>{
     public ResultSet getResultSetEtiqueta();
     public void createEtiqueta(String e);
+    public ResultSet getResultSetRev(String s);
 }

@@ -2,7 +2,7 @@
 <%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAOImpl"%>
 <%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAO"%>
 <!--Formulario CostoRevista-->
-<form class="form-inline my-2 my-lg-0">
+<form class="form-inline my-2 my-lg-0" method="POST">
     <input class="form-control mr-sm-2" type="search" id="name" name="name" placeholder="Buscar por nombre" aria-label="Search">
     <button class="btn btn-outline-success my-2 mr-sm-2" type="submit" id="buscar" name="buscar">Buscar</button>
 </form>

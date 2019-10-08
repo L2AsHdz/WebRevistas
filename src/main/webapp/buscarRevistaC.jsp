@@ -23,7 +23,7 @@
         <h5>Buscar Revista</h5>
 
         <!--Buscar Revista por categoria-->
-        <form class="form-inline my-2 my-lg-0">
+        <form class="form-inline my-2 my-lg-0" method="POST">
             <input class="form-control mr-sm-2" type="search" id="name" name="name" placeholder="Buscar por categoria" aria-label="Search">
             <button class="btn btn-outline-success my-2 mr-sm-2" type="submit" id="buscar" name="buscar">Buscar</button>
         </form>
@@ -53,7 +53,7 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Editor</th>
                     <th scope="col">Categoria</th>
-                    <th scope="col">PrecioSuscripcion</th>
+                    <th scope="col">Precio</th>
                 </tr>
             </thead>
             <tbody>

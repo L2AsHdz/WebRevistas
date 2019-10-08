@@ -1,13 +1,15 @@
 <%-- 
     Document   : etiquetarRevista
-    Created on : 7/10/2019, 12:30:04 AM
+    Created on : 7/10/2019, 09:02:34 AM
     Author     : asael
 --%>
 
-<%@page import="com.ashdz.webrevistas.model.Usuario"%>
-<%@page import="java.sql.ResultSet"%>
+<%@page import="com.ashdz.webrevistas.model.Revista"%>
 <%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAO"%>
 <%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAOImpl"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.ashdz.webrevistas.DAO.Etiqueta.EtiquetaDAO"%>
+<%@page import="com.ashdz.webrevistas.DAO.Etiqueta.EtiquetaDAOImpl"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -18,64 +20,38 @@
         <title>WebRevistas - ${sessionScope.usuario.usuarioSistema}</title>
     </head>
     <body>
-
-        <!--Barra de navegacion-->
-        <%@include file="navBarEditor.html"%><br><br><br>
-        <h5>Etiquetar Revista</h5>
-
-        <!--Formulario Buscar Revista-->
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" id="name" name="name" placeholder="Buscar por nombre" aria-label="Search">
-            <button class="btn btn-outline-success my-2 mr-sm-2" type="submit" id="buscar" name="buscar">Buscar</button>
-        </form>
-        <small id="passwordHelpBlock" class="form-text text-muted">
-            Ingrese el nombre de una revista o parte de el para buscar 
-            <br>coincidencias, deje en blanco para ver todas las revistas.
-        </small><br><br>
-
-        <!--Tabla de revistas-->
-        <h5>Lista de Revistas</h5>
+        
         <%
-            Usuario user = (Usuario) request.getSession().getAttribute("usuario");
             RevistaDAO revDAO = RevistaDAOImpl.getRevistaDAO();
-            ResultSet rs = null;
-            String like;
-            System.out.println(user.getEmailUsuario());
-            if (request.getParameter("name") != null) {
-                like = request.getParameter("name");
-                rs = revDAO.getResultSetSearch(like,user.getEmailUsuario());
+            if (request.getParameter("id") != null) {
+                Revista r = revDAO.getObject((Object)Integer.parseInt(request.getParameter("id")));
+                request.getSession().setAttribute("revista", r);
             }
         %>
 
-        <table class="table w-75 p-3">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Editor</th>
-                    <th scope="col">Categoria</th>
-                    <th scope="col">PrecioSuscripcion</th>
-                </tr>
-            </thead>
-            <tbody>
-                <%
-                    try {
-                        while (rs.next()) {
-                %><tr onclick="document.location = 'index.jsp'">
-                    <th scope="row"><%=rs.getString(1)%></th>
-                    <td><%=rs.getString(2)%></td>
-                    <td><%=rs.getString(3)%></td>
-                    <td><%=rs.getString(4)%></td>
-                    <td><%=rs.getString(5)%></td>
-                </tr><%
-                        }
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
-                %>
+        <!--Barra de navegacion-->
+        <%@include file="navBarEditor.html"%><br><br><br>
+        <h5>Etiquetar Revista: ${sessionScope.revista.nombreRevista}</h5><br>
+        
+        <%
+            EtiquetaDAO etiqDAO = EtiquetaDAOImpl.getEtiquetaDAO();
+            ResultSet rs = etiqDAO.getResultSetEtiqueta();
+            
+            %><form action="EtiquetarRevistaController" method="POST">&nbsp&nbsp&nbsp&nbsp<%
+            while (rs.next()) {
+                %><div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="etiquetas" value="<%=rs.getString("IdEtiqueta")%>">
+                    <label class="form-check-label" for="inlineCheckbox1"><%=rs.getString("NombreEtiqueta")%></label>
+                </div><%
+                }
+                %><c:if test="${requestScope['errorNull'] != null}">
+                        <br>&nbsp&nbsp&nbsp&nbsp<small  class="text-danger">No se ha seleccionado ninguna etiqueta.</small>
+                    </c:if>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Etiquetar</button>
+                </div>
+            </form>
 
-            </tbody>
-        </table>
 
         <%@include file="scripts.html" %>
     </body>

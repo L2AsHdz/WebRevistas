@@ -95,5 +95,27 @@ public class EtiquetaDAOImpl implements EtiquetaDAO{
     public void delete(int t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public ResultSet getResultSetRev(String s) {
+        ResultSet rs = null;
+        
+        try {
+            String sql = "SELECT r.IdRevista, r.NombreRevista, u.NombreUsuario, "
+                    + "r.CuotaSuscripcion FROM EtiquetaRevista er INNER JOIN Revista r "
+                    + "ON er.IdRevista=r.IdRevista INNER JOIN Usuario u ON "
+                    + "r.EmailEditor=u.EmailUsuario WHERE IdEtiqueta=0 "+s+"";
+            Statement declaracion = conexion.createStatement();
+            
+            rs = declaracion.executeQuery(sql);
+            System.out.println("resutset de revistas por etiquetas obtenido");
+            declaracion.close();
+        } catch (SQLException e) {
+            rs=null;
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return rs;
+    }
     
 }
