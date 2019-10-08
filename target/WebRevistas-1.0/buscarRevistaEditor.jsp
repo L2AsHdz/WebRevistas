@@ -56,7 +56,7 @@
             }
         %>
         
-        <form method="POST">
+        <form action="etiquetarRevista.jsp" method="POST">
         <table class="table w-75 p-3">
             <thead class="thead-dark">
                 <tr>
@@ -65,20 +65,20 @@
                     <th scope="col">Editor</th>
                     <th scope="col">Categoria</th>
                     <th scope="col">Precio</th>
-                    <th scope="col">Boton</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <%
                     try {
                         while (rs.next()) {
-                %><tr onclick="location.href='etiquetarRevista.jsp?id=<%=rs.getString(1)%>'">
+                %><tr>
                     <td><%=rs.getString(1)%></th>
                     <td><%=rs.getString(2)%></td>
                     <td><%=rs.getString(3)%></td>
                     <td><%=rs.getString(4)%></td>
                     <td><%=rs.getString(5)%></td>
-                    <td><button type="submit" class="btn btn-secundary">Ver</button></td>
+                    <td><button type="submit" class="btn btn-outline-info" name="id" value="<%=rs.getString(1)%>">Etiquetar</button></td>
                 </tr><%
                         }
                     } catch (Exception e) {

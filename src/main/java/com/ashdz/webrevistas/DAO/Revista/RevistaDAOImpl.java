@@ -109,7 +109,7 @@ public class RevistaDAOImpl implements RevistaDAO{
                 r = null;
             }
             
-            System.out.println("Usuario obtenido de la BD");
+            System.out.println("Revista obtenido de la BD");
             ps.close();
         } catch (SQLException ex) {
             System.out.println("No se pudo leer el usuario");

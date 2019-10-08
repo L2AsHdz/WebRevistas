@@ -53,7 +53,6 @@ public class RevistaController extends HttpServlet {
             dispatcher.forward(request, response);
             System.out.println("se han enviado los errores");
         } else {
-            System.out.println("Que esta pasando doctor garcia");
             try {
                 revDAO.create(r);
                 request.setAttribute("succes", r);

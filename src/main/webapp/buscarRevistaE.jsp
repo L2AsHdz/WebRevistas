@@ -17,7 +17,8 @@
         <title>WebRevistas - ${sessionScope.usuario.usuarioSistema}</title>
     </head>
     <body>
-
+        <%@include file="scripts.html" %>
+        
         <!--Barra de navegacion-->
         <%@include file="navBarSuscriptor.html"%><br><br><br>
         <h5>Buscar Revista</h5>
@@ -41,7 +42,7 @@
             <div class="col">
                 <button type="submit" class="btn btn-primary">Buscar</button>
             </div>
-        </form>
+        </form><br>
 
         <!--Tabla de revistas-->
         <h5>Lista de Revistas</h5>
@@ -54,37 +55,66 @@
             }
         %>
 
-        <table class="table w-75 p-3">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Editor</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Boton</th>
-                </tr>
-            </thead>
-            <tbody>
-                <%
-                    try {
-                        while (rs2.next()) {
-                %><tr>
-                    <th scope="row"><%=rs2.getString(1)%></th>
-                    <td><%=rs2.getString(2)%></td>
-                    <td><%=rs2.getString(3)%></td>
-                    <td><%=rs2.getString(4)%></td>
-                    <td><button type="submit" class="btn btn-primary">Ver</button></td>
-                </tr><%
+        <form action="Previsualizar" method="POST">
+            <table class="table w-75 p-3">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Editor</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                        try {
+                            while (rs2.next()) {
+                    %><tr>
+                        <th scope="row"><%=rs2.getString(1)%></th>
+                        <td><%=rs2.getString(2)%></td>
+                        <td><%=rs2.getString(3)%></td>
+                        <td><%=rs2.getString(4)%></td>
+                        <td><button type="submit" class="btn btn-outline-info" name="id" value="<%=rs2.getString(1)%>">Previsualizar</button></td>
+                    </tr><%
+                            }
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
                         }
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
-                %>
+                    %>
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </form>
+                    
+        <c:if test="${requestScope['rev'] != null}">
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#preview').modal();
+                });
+            </script>
+            ${rev.nombreRevista}
+        </c:if>
+        <!-- Modal -->
+        <div class="modal fade" id="preview" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalScrollableTitle">${rev.nombreRevista}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-
-        <%@include file="scripts.html" %>
     </body>
 </html>
