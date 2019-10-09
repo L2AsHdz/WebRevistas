@@ -83,7 +83,7 @@
                 <!--Input Descripcion-->
                 <div class="col-sm-7">
                     <label for="descrip">Descripcion</label>
-                    <textarea class="form-control" id="descrip" rows="3" placeholder="Descripcion de la revista"></textarea>
+                    <textarea class="form-control" id="descrip" name="descrip" rows="3" placeholder="Descripcion de la revista"></textarea>
                     <div class="invalid-feedback" id="errorDescrip" ></div>
                 </div>
             </div>

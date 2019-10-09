@@ -37,7 +37,6 @@ public class Previsualizar extends HttpServlet {
             dispatcher.forward(request, response);
         } catch (IOException | ServletException e) {
             System.out.println(e.getMessage());
-        }
-                
+        }          
     }
 }
