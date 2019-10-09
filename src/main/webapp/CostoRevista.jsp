@@ -1,9 +1,3 @@
-<%-- 
-    Document   : CostoRevista
-    Created on : 5/10/2019, 01:35:18 PM
-    Author     : asael
---%>
-
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAOImpl"%>
 <%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAO"%>

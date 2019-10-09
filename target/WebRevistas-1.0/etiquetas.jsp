@@ -1,9 +1,3 @@
-<%-- 
-    Document   : etiquetas
-    Created on : 6/10/2019, 08:20:11 AM
-    Author     : asael
---%>
-
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.ashdz.webrevistas.DAO.Etiqueta.EtiquetaDAOImpl"%>
 <%@page import="com.ashdz.webrevistas.DAO.Etiqueta.EtiquetaDAO"%>

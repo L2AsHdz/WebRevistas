@@ -1,9 +1,3 @@
-<%-- 
-    Document   : porcenAdmin
-    Created on : 6/10/2019, 05:54:24 AM
-    Author     : asael
---%>
-
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAOImpl"%>
 <%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAO"%>

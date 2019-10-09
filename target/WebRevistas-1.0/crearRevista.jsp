@@ -1,9 +1,3 @@
-<%-- 
-    Document   : crearRevista
-    Created on : 6/10/2019, 08:52:08 AM
-    Author     : asael
---%>
-
 <%@page import="com.ashdz.webrevistas.model.Usuario"%>
 <%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAO"%>
 <%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAOImpl"%>

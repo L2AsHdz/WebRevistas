@@ -1,9 +1,3 @@
-<%-- 
-    Document   : inicioAdmin
-    Created on : 5/10/2019, 12:13:11 AM
-    Author     : asael
---%>
-
 <%@page import="com.ashdz.webrevistas.model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

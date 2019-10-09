@@ -1,9 +1,3 @@
-<%-- 
-    Document   : publicarEdicion
-    Created on : 6/10/2019, 11:51:04 AM
-    Author     : asael
---%>
-
 <%@page import="com.ashdz.webrevistas.model.Usuario"%>
 <%@page import="com.ashdz.webrevistas.DAO.Publicacion.PublicacionDAO"%>
 <%@page import="com.ashdz.webrevistas.DAO.Publicacion.PublicacionDAOImpl"%>

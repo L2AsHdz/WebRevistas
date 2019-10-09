@@ -1,9 +1,3 @@
-<%-- 
-    Document   : categorias
-    Created on : 6/10/2019, 07:16:53 AM
-    Author     : asael
---%>
-
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.ashdz.webrevistas.DAO.Categoria.CategoriaDAO"%>
 <%@page import="com.ashdz.webrevistas.DAO.Categoria.CategoriaDAOImpl"%>

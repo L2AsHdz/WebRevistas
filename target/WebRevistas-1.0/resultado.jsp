@@ -1,9 +1,3 @@
-<%-- 
-    Document   : resultado
-    Created on : 3/10/2019, 02:58:48 AM
-    Author     : asael
---%>
-
 <%@page import="java.time.LocalDate"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>

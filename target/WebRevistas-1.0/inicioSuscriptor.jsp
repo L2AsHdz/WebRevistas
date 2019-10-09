@@ -1,9 +1,3 @@
-<%-- 
-    Document   : inicioSuscriptor
-    Created on : 5/10/2019, 12:13:37 AM
-    Author     : asael
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

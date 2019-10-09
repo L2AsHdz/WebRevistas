@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,12 +8,8 @@
         <title>WebRevistas - ${sessionScope.usuario.usuarioSistema}</title>
     </head>
     <body>
-        
-        <!--Barra de navegacion-->
-        <%@include file="navBarEditor.html"%><br><br><br>
-        
-        Bienvenid@ ${sessionScope.usuario.usuarioSistema}
-        
         <%@include file="scripts.html" %>
+        
+        
     </body>
 </html>

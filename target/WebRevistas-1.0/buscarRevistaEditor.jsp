@@ -1,9 +1,3 @@
-<%-- 
-    Document   : etiquetarRevista
-    Created on : 7/10/2019, 12:30:04 AM
-    Author     : asael
---%>
-
 <%@page import="com.ashdz.webrevistas.model.Usuario"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.ashdz.webrevistas.DAO.Revista.RevistaDAO"%>

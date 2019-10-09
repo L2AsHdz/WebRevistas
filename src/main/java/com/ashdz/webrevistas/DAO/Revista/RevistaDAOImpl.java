@@ -201,7 +201,7 @@ public class RevistaDAOImpl implements RevistaDAO{
         
         try {
             String sql = "SELECT r.IdRevista,r.Nombrerevista Nombre, u.NombreUsuario Editor, "
-                    + "c.NombreCategoria Categoria, r.CuotaSuscripcion Precio FROM "
+                    + "c.NombreCategoria Categoria, r.CuotaSuscripcion, r.Descripcion Precio FROM "
                     + "Revista r INNER JOIN Usuario u ON r.EmailEditor=u.EmailUsuario "
                     + "INNER JOIN Categoria c ON r.IdCategoria=c.IdCategoria WHERE "
                     + "c.NombreCategoria LIKE '%"+cat+"%'";

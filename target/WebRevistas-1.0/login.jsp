@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Login
-    Created on : 2/10/2019, 11:46:04 PM
-    Author     : asael
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
