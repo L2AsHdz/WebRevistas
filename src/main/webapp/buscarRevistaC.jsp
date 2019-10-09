@@ -1,3 +1,4 @@
+<%@page import="com.ashdz.webrevistas.model.Usuario"%>
 <%@page import="com.ashdz.webrevistas.DAO.Etiqueta.EtiquetaDAO"%>
 <%@page import="com.ashdz.webrevistas.DAO.Etiqueta.EtiquetaDAOImpl"%>
 <%@page import="java.sql.ResultSet"%>
@@ -31,12 +32,13 @@
         <!--Tabla de revistas-->
         <h5>Lista de Revistas</h5>
         <%
+            Usuario user = (Usuario)request.getSession().getAttribute("usuario");
             RevistaDAO revDAO = RevistaDAOImpl.getRevistaDAO();
             ResultSet rs = null;
             String cat;
             if (request.getParameter("name") != null) {
                 cat = request.getParameter("name");
-                rs = revDAO.getResultSetRevByCat(cat);
+                rs = revDAO.getResultSetRevByCat(cat,user.getEmailUsuario());
             }
         %>
 

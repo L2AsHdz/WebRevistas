@@ -97,14 +97,16 @@ public class EtiquetaDAOImpl implements EtiquetaDAO{
     }
 
     @Override
-    public ResultSet getResultSetRev(String s) {
+    public ResultSet getResultSetRev(String s, String email) {
         ResultSet rs = null;
         
         try {
             String sql = "SELECT DISTINCT r.IdRevista, r.NombreRevista, u.NombreUsuario, "
                     + "r.CuotaSuscripcion FROM EtiquetaRevista er INNER JOIN Revista r "
                     + "ON er.IdRevista=r.IdRevista INNER JOIN Usuario u ON "
-                    + "r.EmailEditor=u.EmailUsuario WHERE IdEtiqueta=0 "+s+" ORDER BY r.IdRevista";
+                    + "r.EmailEditor=u.EmailUsuario LEFT JOIN SuscripcionRevista sr ON "
+                    + "r.IdRevista=sr.IdRevista WHERE (sr.IdRevista IS NULL OR "
+                    + "sr.EmailSuscriptor!='"+email+"') AND (IdEtiqueta=0 "+s+") ORDER BY r.IdRevista";
             Statement declaracion = conexion.createStatement();
             
             rs = declaracion.executeQuery(sql);
@@ -142,7 +144,7 @@ public class EtiquetaDAOImpl implements EtiquetaDAO{
     }
 
     @Override
-    public ResultSet getResultSetRev2(String s) {
+    public ResultSet getResultSetRev2(String s,String email) {
         ResultSet rs = null;
         
         try {
@@ -150,7 +152,9 @@ public class EtiquetaDAOImpl implements EtiquetaDAO{
                     + "r.CuotaSuscripcion,c.NombreCategoria FROM EtiquetaRevista er INNER JOIN Revista r "
                     + "ON er.IdRevista=r.IdRevista INNER JOIN Usuario u ON "
                     + "r.EmailEditor=u.EmailUsuario INNER JOIN Categoria c ON "
-                    + "r.IdCategoria=c.IdCategoria WHERE IdEtiqueta=0 "+s+" ORDER BY r.IdRevista";
+                    + "r.IdCategoria=c.IdCategoria LEFT JOIN SuscripcionRevista sr ON "
+                    + "r.IdRevista=sr.IdRevista WHERE (sr.IdRevista IS NULL OR "
+                    + "sr.EmailSuscriptor!='"+email+"') AND (IdEtiqueta=0 "+s+") ORDER BY r.IdRevista";
             Statement declaracion = conexion.createStatement();
             
             rs = declaracion.executeQuery(sql);

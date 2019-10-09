@@ -196,15 +196,17 @@ public class RevistaDAOImpl implements RevistaDAO{
     }
 
     @Override
-    public ResultSet getResultSetRevByCat(String cat) {
+    public ResultSet getResultSetRevByCat(String cat, String email) {
         ResultSet rs = null;
         
         try {
             String sql = "SELECT r.IdRevista,r.Nombrerevista Nombre, u.NombreUsuario Editor, "
-                    + "c.NombreCategoria Categoria, r.CuotaSuscripcion, r.Descripcion Precio FROM "
+                    + "c.NombreCategoria Categoria, r.CuotaSuscripcion, r.Descripcion FROM "
                     + "Revista r INNER JOIN Usuario u ON r.EmailEditor=u.EmailUsuario "
-                    + "INNER JOIN Categoria c ON r.IdCategoria=c.IdCategoria WHERE "
-                    + "c.NombreCategoria LIKE '%"+cat+"%'";
+                    + "INNER JOIN Categoria c ON r.IdCategoria=c.IdCategoria LEFT JOIN "
+                    + "SuscripcionRevista sr ON r.IdRevista=sr.IdRevista WHERE "
+                    + "c.NombreCategoria LIKE '%"+cat+"%' AND (sr.IdRevista IS NULL "
+                    + "OR sr.EmailSuscriptor!='"+email+"') ORDER BY r.IdRevista";
             Statement declaracion = conexion.createStatement();
             
             rs = declaracion.executeQuery(sql);

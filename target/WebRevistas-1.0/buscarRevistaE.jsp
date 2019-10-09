@@ -1,3 +1,4 @@
+<%@page import="com.ashdz.webrevistas.model.Usuario"%>
 <%@page import="com.ashdz.webrevistas.DAO.Etiqueta.EtiquetaDAOImpl"%>
 <%@page import="com.ashdz.webrevistas.DAO.Etiqueta.EtiquetaDAO"%>
 <%@page import="java.sql.ResultSet"%>
@@ -42,10 +43,11 @@
         <h5>Lista de Revistas</h5>
         <%!private String sql = null;%>
         <%
+            Usuario user = (Usuario)request.getSession().getAttribute("usuario");
             ResultSet rs2 = null;
             if (request.getAttribute("sql") != null) {
                 sql = request.getAttribute("sql").toString();
-                rs2 = etiqDAO.getResultSetRev(sql);
+                rs2 = etiqDAO.getResultSetRev(sql,user.getEmailUsuario());
             }
         %>
 
@@ -82,7 +84,7 @@
             ResultSet rs3 = null;
             String etiquetas;
             if (sql != null) {
-                rs3 = etiqDAO.getResultSetRev2(sql);
+                rs3 = etiqDAO.getResultSetRev2(sql,user.getEmailUsuario());
             }
             try {
                 while (rs3.next()) {
