@@ -99,7 +99,7 @@
                             <b>Editor:</b> <%=rs.getString(3)%><br>
                             <b>Cuota Suscripcion:</b> 
                             <%
-                                int c = Integer.parseInt(rs.getString(5));
+                                float c = Float.parseFloat(rs.getString(5));
                                 if (c == 0) {
                                     %>Gratis<%
                                 }else{

@@ -72,7 +72,7 @@ public class CategoriaDAOImpl implements CategoriaDAO{
     public Categoria getObject(Object id) {
         Categoria c = new Categoria();
         try {
-            String sql = "SELECT * FROM Usuario WHERE EmailUsuario = ?";
+            String sql = "SELECT * FROM Categoria WHERE IdCategoria = ?";
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setInt(1, (int)id);
             ResultSet rs = ps.executeQuery();

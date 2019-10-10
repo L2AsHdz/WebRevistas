@@ -244,5 +244,27 @@ public class RevistaDAOImpl implements RevistaDAO{
         }
         return rs;
     }
+
+    @Override
+    public ResultSet getResultSetRevS(String email) {
+        ResultSet rs = null;
+        
+        try {
+            String sql = "SELECT r.IdRevista,r.NombreRevista FROM Revista r INNER JOIN "
+                    + "SuscripcionRevista sr ON r.IdRevista=sr.IdRevista WHERE "
+                    + "sr.EmailSuscriptor='"+email+"'";
+            Statement declaracion = conexion.createStatement();
+            
+            rs = declaracion.executeQuery(sql);
+            
+            System.out.println("resutset de revista suscritas obtenido");
+            declaracion.close();
+        } catch (SQLException e) {
+            rs=null;
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return rs;
+    }
     
 }

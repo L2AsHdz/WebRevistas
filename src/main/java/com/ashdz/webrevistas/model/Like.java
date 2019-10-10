@@ -14,6 +14,12 @@ public class Like {
     public Like() {
     }
 
+    public Like(int idRevista, String emailSuscriptor, LocalDate fechaLike) {
+        this.idRevista = idRevista;
+        this.emailSuscriptor = emailSuscriptor;
+        this.fechaLike = fechaLike;
+    }
+
     public int getIdRevista() {
         return idRevista;
     }
