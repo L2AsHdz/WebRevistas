@@ -16,6 +16,13 @@ public class Comentario {
     public Comentario() {
     }
 
+    public Comentario(int idRevista, String emailSuscriptor, LocalDate fechaComentario, String comentario) {
+        this.idRevista = idRevista;
+        this.emailSuscriptor = emailSuscriptor;
+        this.fechaComentario = fechaComentario;
+        this.comentario = comentario;
+    }
+
     public int getIdComentario() {
         return idComentario;
     }
